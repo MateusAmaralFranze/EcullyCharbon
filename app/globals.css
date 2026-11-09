@@ -1,0 +1,358 @@
+@import "tailwindcss";
+
+@theme {
+  --color-carvao: #0b0a09;
+  --color-carvao-2: #131010;
+  --color-carvao-3: #1c1816;
+  --color-creme: #f3ede3;
+  --color-creme-2: #cfc5b7;
+  --color-brasa: #e4572e;
+  --color-brasa-2: #f0714a;
+  --color-ambar: #c97b3a;
+  --color-vinho: #5c1a14;
+  --color-linha: rgba(243, 237, 227, 0.14);
+
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: var(--color-linha);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: #3a322c #0b0a09;
+}
+
+body {
+  background-color: var(--color-carvao);
+  color: var(--color-creme);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--color-brasa);
+  color: var(--color-carvao);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brasa);
+  outline-offset: 4px;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  user-select: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Tipografia                                                       */
+/* ---------------------------------------------------------------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 0.94;
+}
+
+.display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-creme) 62%, transparent);
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+.pretty {
+  text-wrap: pretty;
+}
+
+/* ---------------------------------------------------------------- */
+/* Componentes                                                      */
+/* ---------------------------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .shell {
+    padding-inline: 4rem;
+  }
+}
+
+.hairline {
+  border-top: 1px solid var(--color-linha);
+}
+
+.leader {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  width: 100%;
+}
+
+.leader-fill {
+  flex: 1 1 auto;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted rgba(243, 237, 227, 0.24);
+  transform: translateY(-0.28em);
+}
+
+.link-line {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.link-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.18em;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+
+.link-line:hover::after,
+.link-line[data-active="true"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid var(--color-linha);
+  border-radius: 999px;
+  padding: 0.9rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.35s var(--ease-out-expo),
+    color 0.35s var(--ease-out-expo),
+    border-color 0.35s var(--ease-out-expo);
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--color-brasa);
+  border-color: var(--color-brasa);
+  color: #140a07;
+}
+
+.btn-primary:hover {
+  background: var(--color-creme);
+  border-color: var(--color-creme);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-creme);
+}
+
+.btn-ghost:hover {
+  background: var(--color-creme);
+  border-color: var(--color-creme);
+  color: var(--color-carvao);
+}
+
+.card-hover img {
+  transition: transform 0.9s var(--ease-out-expo);
+}
+
+.card-hover:hover img {
+  transform: scale(1.05);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Marquees                                                         */
+/* ---------------------------------------------------------------- */
+
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left var(--marquee-duration, 36s) linear infinite;
+  will-change: transform;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+}
+
+.marquee-slow {
+  animation-duration: 70s;
+}
+
+@media (hover: hover) {
+  .marquee-pausable:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Formulários                                                      */
+/* ---------------------------------------------------------------- */
+
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(243, 237, 227, 0.22);
+  padding: 0.85rem 0;
+  font-size: 1rem;
+  color: var(--color-creme);
+  transition: border-color 0.3s ease;
+}
+
+.field::placeholder {
+  color: rgba(243, 237, 227, 0.5);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--color-brasa);
+}
+
+.field option {
+  background: var(--color-carvao-2);
+  color: var(--color-creme);
+}
+
+/* ---------------------------------------------------------------- */
+/* Impressão do cardápio                                            */
+/* ---------------------------------------------------------------- */
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt;
+  }
+
+  body::after,
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  .menu-print {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .menu-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .menu-item {
+    border-color: #ddd !important;
+    color: #111 !important;
+  }
+
+  .menu-item * {
+    color: #111 !important;
+    border-color: #ddd !important;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Movimento reduzido                                               */
+/* ---------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+  }
+}
